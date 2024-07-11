@@ -2,7 +2,7 @@
 
 echo
 echo "--------------------------------------"
-echo "          AOSP 14.0 Buildbot          "
+echo "          AOSP 15.0 Buildbot          "
 echo "              ImbrogliOS              "
 echo "             by Imbroglius            "
 echo "--------------------------------------"
@@ -16,7 +16,7 @@ BV=$1
 
 initRepos() {
     echo "--> Initializing workspace"
-    repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r54 --git-lfs
+    repo init -u https://android.googlesource.com/platform/manifest -b android-15-beta-2-gpl --git-lfs
     echo
 
     echo "--> Preparing local manifest"
@@ -108,7 +108,7 @@ generatePackages() {
         [[ "$filename" == *"_a64"* ]] && arch="arm32_binder64" || arch="arm64"
         [[ "$filename" == *"_bvN"* ]] && variant="vanilla" || variant="gapps"
         [[ "$filename" == *"-vndklite"* ]] && vndk="-vndklite" || vndk=""
-        name="ImbrogliOS_aosp-${arch}-ab-${variant}${vndk}-14.0-$buildDate"
+        name="ImbrogliOS_aosp-${arch}-ab-${variant}${vndk}-15.0-$buildDate"
         xz -cv "$file" -T0 > $BD/"$name".img.xz
     done
     rm -rf $BD/system-*.img
@@ -121,7 +121,7 @@ generateOta() {
     buildDate="$(date +%Y%m%d)"
     timestamp="$START"
     json="{\"version\": \"$version\",\"date\": \"$timestamp\",\"variants\": ["
-    find $BD/ -name "ImbrogliOS_aosp-*-14.0-$buildDate.img.xz" | sort | {
+    find $BD/ -name "ImbrogliOS_aosp-*-15.0-$buildDate.img.xz" | sort | {
         while read file; do
             filename="$(basename $file)"
             [[ "$filename" == *"-arm32"* ]] && arch="a64" || arch="arm64"
