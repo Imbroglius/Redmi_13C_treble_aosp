@@ -32,6 +32,11 @@ syncRepos() {
     echo
 }
 
+clonePriv() {
+    echo "Import signing keys if you want"
+    read -p "Clone your private signing keys repo now in another terminal and after that press any key here to continue"
+}
+
 applyPatches() {
     echo "--> Applying TrebleDroid patches"
     bash $BL/patch.sh $BL trebledroid
@@ -141,6 +146,7 @@ START=$(date +%s)
 
 initRepos
 syncRepos
+clonePriv
 applyPatches
 setupEnv
 buildTrebleApp
