@@ -23,7 +23,7 @@ To get started with building AOSP GSI, you'll need to get familiar with [Git and
     ```
 - Clone this repo:
     ```
-    git clone https://github.com/imbroglius/imbroglios_gsi -b android-14.0
+    git clone https://github.com/imbroglius/imbroglios_gsi -b android-14.0_r52
     ```
 - Finally, start the build script:
     ```
