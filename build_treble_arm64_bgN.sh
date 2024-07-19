@@ -16,7 +16,7 @@ BV=treble_arm64_bgN
 
 initRepos() {
     echo "--> Initializing workspace"
-    repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r54 --git-lfs
+    repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r52 --git-lfs
     echo
 
     echo "--> Preparing local manifest"
