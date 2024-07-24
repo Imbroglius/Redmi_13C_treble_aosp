@@ -19,16 +19,16 @@
   <project name="ponces/packages_services_OmniJaws" path="packages/services/OmniJaws" remote="github" revision="14.0" />
 
   <!-- imbroglius -->
-  <project name="imbroglius/vendor_imbroglius" path="vendor/imbroglius" remote="github" revision="android-14.0" />
-  <!--project name="lawnchairLauncher/lawnchair" path="packages/apps/lawnchair" remote="github" revision="14-dev" -->
-  <!--project name="lawnchairlauncher/lawnfeed" path="packages/apps/lawnfeed" remote="github" revision="master" -->
+  <project name="imbroglius/vendor_imbroglius" path="vendor/imbroglius" remote="github" revision="android-14.0_testing" />
+  <project name="lawnchairLauncher/lawnchair" path="packages/apps/lawnchair" remote="github" revision="14-dev" />
+  <project name="lawnchairlauncher/lawnfeed" path="packages/apps/lawnfeed" remote="github" revision="master" />
   <!--project name="topjohnwu/Magisk" path="packages/apps/Magisk" remote="github" revision="master" -->
   <!--project name="MindTheGapps/vendor_gapps" path="vendor/gapps" remote="gitlab" revision="upsilon" -->
   
   <!-- LineageOS -->
   <remove-project name="platform/packages/apps/Launcher3" />
   <remove-project name="platform/packages/apps/ThemePicker" />
-  <project name="LineageOS/android_packages_apps_Trebuchet" path="packages/apps/Trebuchet" remote="github" revision="lineage-21.0" />
+  <!-- project name="LineageOS/android_packages_apps_Trebuchet" path="packages/apps/Trebuchet" remote="github" revision="lineage-21.0" -->
   <project name="LineageOS/android_packages_apps_ThemePicker" path="packages/apps/ThemePicker" remote="github" revision="lineage-21.0" />
   <project name="imbroglius/android_packages_apps_Aperture" path="packages/apps/Aperture" remote="github" revision="lineage-21.0" />
 
