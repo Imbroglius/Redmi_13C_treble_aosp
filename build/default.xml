@@ -2,7 +2,7 @@
 <manifest>
   <remote name="github" fetch="https://github.com" />
   <remote name="gitlab" fetch="https://gitlab.com" />
-  <remote name="sourceforge" fetch="https://git.code.sf.net/p" />
+  <remote name="sourceforge" fetch="https://git.code.sf.net/p/" />
 
   <!-- TrebleDroid -->
   <project name="TrebleDroid/device_phh_treble" path="device/phh/treble" remote="github" revision="android-14.0" />
@@ -25,7 +25,7 @@
   <!--project name="lawnchairlauncher/lawnfeed" path="packages/apps/lawnfeed" remote="github" revision="master" -->
   <!--project name="topjohnwu/Magisk" path="packages/apps/Magisk" remote="github" revision="master" -->
   <!--project name="MindTheGapps/vendor_gapps" path="vendor/gapps" remote="gitlab" revision="upsilon" -->
-  <project name="/opencamera/code opencamera-code" path="packages/apps/opencamera" remote="sourceforge" revision="master" />
+  <project name="opencamera/code opencamera-code" path="packages/apps/opencamera" remote="sourceforge" revision="master" />
   
   <!-- LineageOS -->
   <remove-project name="platform/packages/apps/Launcher3" />
