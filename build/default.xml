@@ -25,8 +25,7 @@
   <!--project name="lawnchairlauncher/lawnfeed" path="packages/apps/lawnfeed" remote="github" revision="master" -->
   <!--project name="topjohnwu/Magisk" path="packages/apps/Magisk" remote="github" revision="master" -->
   <!--project name="MindTheGapps/vendor_gapps" path="vendor/gapps" remote="gitlab" revision="upsilon" -->
-  <project name="opencamera/code opencamera-code" path="packages/apps/opencamera" remote="sourceforge" revision="master" />
-  
+
   <!-- LineageOS -->
   <remove-project name="platform/packages/apps/Launcher3" />
   <remove-project name="platform/packages/apps/ThemePicker" />
