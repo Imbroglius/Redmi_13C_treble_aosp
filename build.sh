@@ -4,13 +4,13 @@ echo
 echo "--------------------------------------"
 echo "          AOSP 14.0 Buildbot          "
 echo "                  by                  "
-echo "                ponces                "
+echo "              Imbroglius              "
 echo "--------------------------------------"
 echo
 
 set -e
 
-BL=$PWD/treble_aosp
+BL=$PWD/imbroglios_gsi
 BD=$HOME/builds
 BV=$1
 
@@ -128,7 +128,7 @@ generateOta() {
             [[ "$filename" == *"-vndklite"* ]] && vndk="-vndklite" || vndk=""
             name="treble_${arch}_b${variant}N${vndk}"
             size=$(wc -c $file | awk '{print $1}')
-            url="https://github.com/ponces/treble_aosp/releases/download/$version/$filename"
+            url="https://github.com/imbroglius/imbroglios_gsi/releases/download/$version/$filename"
             json="${json} {\"name\": \"$name\",\"size\": \"$size\",\"url\": \"$url\"},"
         done
         json="${json%?}]}"
