@@ -20,17 +20,12 @@ initRepos() {
     echo
 
     echo "--> Preparing local manifest"
-    if [ -d "$LMD" ]; then
-        echo "Deleting old local manifests"
-          rm -r $LMD
-    fi
-    echo "Fetching new local manifests"
     mkdir -p .repo/local_manifests
     cp $BL/build/default.xml .repo/local_manifests/default.xml
     cp $BL/build/remove.xml .repo/local_manifests/remove.xml
     echo
-    
 }
+
 syncRepos() {
     echo "--> Syncing repos"
     repo sync -c --force-sync --no-clone-bundle --no-tags -j$(nproc --all) || repo sync -c --force-sync --no-clone-bundle --no-tags -j$(nproc --all)
