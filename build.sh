@@ -13,7 +13,6 @@ set -e
 BL=$PWD/imbroglios_gsi
 BD=$HOME/builds
 BV=$1
-LMD=.repo/local_manifests
 
 initRepos() {
     echo "--> Initializing workspace"
