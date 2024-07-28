@@ -30,14 +30,14 @@ jobs:
         run: echo "BUILD_VARIANT=${{ inputs.build_variant || 'treble_arm64_bgN' }}" >> $GITHUB_ENV
 
       - name: Build Image
-        run: docker build -f build/Dockerfile -t ponces/treble .
+        run: docker build -f build/Dockerfile -t imbroglius/treble .
 
       - name: Get Keys
         uses: actions/checkout@v4
         with:
-          repository: ponces/vendor_ponces-priv
+          repository: imbroglius/vendor_daniel-priv
           token: ${{ secrets.GH_TOKEN }}
-          path: vendor_ponces-priv
+          path: vendor_daniel-priv
 
       - name: Build ROM
         run: |
@@ -46,8 +46,8 @@ jobs:
                      --privileged \
                      --name test \
                      --volume ${{ github.workspace }}/builds:/root/builds \
-                     --volume ${{ github.workspace }}/vendor_ponces-priv:/aosp/vendor/ponces-priv \
-                     ponces/treble treblebuild ${{ env.BUILD_VARIANT }}
+                     --volume ${{ github.workspace }}/vendor_daniel-priv:/aosp/vendor/daniel-priv \
+                     imbroglius/treble treblebuild ${{ env.BUILD_VARIANT }}
 
       - name: Upload ROM
         uses: actions/upload-artifact@v4
