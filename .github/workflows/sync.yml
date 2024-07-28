@@ -15,14 +15,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Image
-        run: docker build -f build/Dockerfile -t ponces/treble .
+        run: docker build -f build/Dockerfile -t imbroglius/treble .
 
       - name: Sync with TrebleDroid
         run: |
           docker run --rm \
                      --name td \
                      --volume ${{ github.workspace }}/patches:/aosp/treble_aosp/patches \
-                     ponces/treble treblesync
+                     imbroglius/treble treblesync
           cp -r patches/trebledroid patches/patches
           cd patches
           zip -rq patches-for-developers.zip patches
