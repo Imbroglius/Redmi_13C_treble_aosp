@@ -25,7 +25,7 @@ initRepos() {
         echo "Deleting old local manifests"
           rm -r $LMD
     fi
-    read -p "click_me"
+    
     echo "Fetching new local manifests"
     mkdir -p .repo/local_manifests
     cp $BL/build/default.xml .repo/local_manifests/default.xml
