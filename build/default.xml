@@ -21,7 +21,7 @@
 
   <!-- imbroglius -->
   <project name="imbroglius/vendor_imbroglius" path="vendor/imbroglius" remote="gitlab" revision="android-14.0" />
-  <project name="https://github.com/MM2-0/Kvaesitso" path="packages/apps/kvaesitso" remote="github" revision="master" -->
+  <project name="https://github.com/MM2-0/Kvaesitso" path="packages/apps/kvaesitso" remote="github" revision="master" />
   <!--project name="lawnchairlauncher/lawnfeed" path="packages/apps/lawnfeed" remote="github" revision="master" -->
   <!--project name="topjohnwu/Magisk" path="packages/apps/Magisk" remote="github" revision="master" -->
   <!--project name="MindTheGapps/vendor_gapps" path="vendor/gapps" remote="gitlab" revision="upsilon" -->
