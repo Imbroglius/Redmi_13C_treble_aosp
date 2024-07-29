@@ -47,7 +47,7 @@ jobs:
                      --name test \
                      --volume ${{ github.workspace }}/builds:/root/builds \
                      --volume ${{ github.workspace }}/vendor_daniel-priv:/aosp/vendor/daniel-priv \
-                     ponces/treble treblebuild ${{ env.BUILD_VARIANT }}
+                     imbroglius/treble treblebuild ${{ env.BUILD_VARIANT }}
 
       - name: Upload ROM
         uses: actions/upload-artifact@v4
