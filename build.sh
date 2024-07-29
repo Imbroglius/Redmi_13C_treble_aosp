@@ -13,19 +13,26 @@ set -e
 BL=$PWD/imbroglios_gsi
 BD=$HOME/builds
 BV=$1
+LMD=.repo/local_manifests
 
 initRepos() {
     echo "--> Initializing workspace"
     repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r54 --git-lfs
     echo
 
-    echo "--> Preparing local manifest"
+   echo "--> Preparing local manifest"
+    if [ -d "$LMD" ]; then
+        echo "Deleting old local manifests"
+          rm -r $LMD
+    fi
+    read -p "click_me"
+    echo "Fetching new local manifests"
     mkdir -p .repo/local_manifests
     cp $BL/build/default.xml .repo/local_manifests/default.xml
     cp $BL/build/remove.xml .repo/local_manifests/remove.xml
     echo
+    
 }
-
 syncRepos() {
     echo "--> Syncing repos"
     repo sync -c --force-sync --no-clone-bundle --no-tags -j$(nproc --all) || repo sync -c --force-sync --no-clone-bundle --no-tags -j$(nproc --all)
