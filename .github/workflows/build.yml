@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: imbroglius/vendor_daniel-priv
-          token: ${{ secrets.IMBROGLIOTOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
           path: vendor_daniel-priv
 
       - name: Build ROM
@@ -47,7 +47,7 @@ jobs:
                      --name test \
                      --volume ${{ github.workspace }}/builds:/root/builds \
                      --volume ${{ github.workspace }}/vendor_daniel-priv:/aosp/vendor/daniel-priv \
-                     imbroglius/treble treblebuild ${{ env.BUILD_VARIANT }}
+                     ponces/treble treblebuild ${{ env.BUILD_VARIANT }}
 
       - name: Upload ROM
         uses: actions/upload-artifact@v4
