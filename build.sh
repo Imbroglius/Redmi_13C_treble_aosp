@@ -154,7 +154,7 @@ START=$(date +%s)
 
 initRepos
 syncRepos
-clonePriv
+# clonePriv
 applyPatches
 setupEnv
 buildTrebleApp
