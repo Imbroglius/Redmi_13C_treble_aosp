@@ -9,14 +9,12 @@ It is actually based on:
 - Android 14.0.0_r54
 - latest GApps from barbet 14/AP2A.240705.004
 - Synced to TD Patches
-- Aperture camera App from LineageOS is included
-- Trebuchet launcher
+- Camera Apps: Aperture from Lineage and OpenCamera
+- Launcher: Trebuchet and Lawnchair 14
+- Lawnfeed 3
 - the builds are signed with my personal keys
 - all in all it's a very clean AOSP GSI
 
-# Future plans
-- Lawnchair as standard launcher
-- Lawnfeed integrated
 
 ## Build yourself (it is not signed as long as you don't include your own keys)
 To get started with building AOSP GSI, you'll need to get familiar with [Git and Repo](https://source.android.com/source/using-repo.html) as well as [How to build a GSI](https://github.com/phhusson/treble_experimentations/wiki/How-to-build-a-GSI%3F).
