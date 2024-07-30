@@ -39,7 +39,7 @@ uploadAssets() {
         curl -o /dev/null -s -L -X POST \
             "https://uploads.github.com/repos/$GUSER/$GREPO/releases/$id/assets?name=$(basename $file)" \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer $GITHUB_API_TOKEN" \
+            -H "Authorization: Bearer $IMBROGLIOTOKEN" \
             -H "Content-Type: application/octet-stream" \
             -T "$file"
         echo
