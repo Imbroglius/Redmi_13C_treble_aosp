@@ -6,7 +6,8 @@ echo "          AOSP 14.0 Buildbot          "
 echo "                  by                  "
 echo "              Imbroglius              "
 echo "--------------------------------------"
-echo
+echo "  builds only treble_arm64_bgN user   "
+echo "--------------------------------------"                            
 
 set -e
 
