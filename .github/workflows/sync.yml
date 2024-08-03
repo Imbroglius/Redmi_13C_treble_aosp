@@ -21,7 +21,7 @@ jobs:
         run: |
           docker run --rm \
                      --name td \
-                     --volume ${{ github.workspace }}/patches:/aosp/treble_aosp/patches \
+                     --volume ${{ github.workspace }}/patches:/aosp/imbroglios_gsi/patches \
                      imbroglius/treble treblesync
           cp -r patches/trebledroid patches/patches
           cd patches
