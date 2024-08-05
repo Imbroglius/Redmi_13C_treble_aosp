@@ -1,4 +1,4 @@
-# ImbrogliOS AOSP GSI v2024.08.04
+# ImbrogliOS AOSP GSI
 
 ## INFO
 ImbrogliOS is mainly created for my personal purposes.
