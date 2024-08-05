@@ -1,17 +1,19 @@
-# ImbrogliOS AOSP GSI
+# ImbrogliOS AOSP GSI v2024.08.04
 
 ## INFO
 ImbrogliOS is mainly created for my personal purposes.
-Pre-Releases and testing builds are ONLY built with target treble_arm64_bgN!
 
 It is actually based on:
 
 - Android 14.0.0_r54
 - latest GApps from barbet 14/AP2A.240705.004
-- Synced to TD Patches
-- Camera Apps: Aperture from Lineage and OpenCamera
-- Launcher: Trebuchet and Lawnchair 14
-- Lawnfeed 3
+- Synced to latest TD Patches
+- Camera Apps: Aperture from LineageOS and OpenCamera
+- Launcher: Trebuchet and [Lawnchair 14](https://github.com/LawnchairLauncher/lawnchair)
+- [Lawnfeed 3](https://github.com/LawnchairLauncher/lawnfeed)
+- [Obtanium](https://github.com/ImranR98/Obtainium)
+- [F-Droid](https://f-droid.org/)
+- [Data-Backup](https://github.com/XayahSuSuSu/Android-DataBackup)
 - the builds are signed with my personal keys
 - all in all it's a very clean AOSP GSI
 
