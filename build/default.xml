@@ -21,10 +21,10 @@
 
   <!-- imbroglius -->
   <project name="imbroglius/vendor_imbroglius" path="vendor/imbroglius" remote="gitlab" revision="android-14.0" />
-  <!--project name="MM2-0/Kvaesitso" path="packages/apps/kvaesitso" remote="github" revision="main" -->
-  <project name="ImranR98/Obtainium" path="packages/apps/obtaimium" remote="github" revision="main" />
+  <!-- project name="MM2-0/Kvaesitso" path="packages/apps/kvaesitso" remote="github" revision="main" -->
+  <!-- project name="ImranR98/Obtainium" path="packages/apps/obtaimium" remote="github" revision="main" -->
   <!-- project name="LawnchairLauncher/lawnfeed" path="packages/apps/lawnfeed" remote="github" revision="master" -->
-  <!--project name="MindTheGapps/vendor_gapps" path="vendor/gapps" remote="gitlab" revision="upsilon" -->
+  <!-- project name="MindTheGapps/vendor_gapps" path="vendor/gapps" remote="gitlab" revision="upsilon" -->
 
   <!-- LineageOS -->
   <remove-project name="platform/packages/apps/Launcher3" />
