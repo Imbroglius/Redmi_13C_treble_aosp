@@ -35,7 +35,7 @@ initRepos() {
 }
 syncRepos() {
     echo "--> Syncing repos"
-    repo sync -c --force-sync --no-clone-bundle --no-tags -j1 || repo sync -c --force-sync --no-clone-bundle --no-tags -j1
+    repo sync -c --force-sync --no-clone-bundle --no-tags --fail-fast -j1 || repo sync -c --force-sync --no-clone-bundle --no-tags --fail-fast -j1
     echo
 }
 
