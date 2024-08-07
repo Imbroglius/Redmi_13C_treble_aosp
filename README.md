@@ -13,7 +13,6 @@ It is actually based on:
 - [Lawnfeed 3](https://github.com/LawnchairLauncher/lawnfeed)
 - [Obtanium](https://github.com/ImranR98/Obtainium)
 - [F-Droid](https://f-droid.org/)
-- [Data-Backup](https://github.com/XayahSuSuSu/Android-DataBackup)
 - the builds are signed with my personal keys
 - all in all it's a very clean AOSP GSI
 
