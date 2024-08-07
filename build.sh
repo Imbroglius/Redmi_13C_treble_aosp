@@ -17,7 +17,7 @@ LMD=.repo/local_manifests
 
 initRepos() {
     echo "--> Initializing workspace"
-    repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r55 --git-lfs
+    repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r61 --git-lfs
     echo
 
    echo "--> Preparing local manifest"
