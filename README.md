@@ -5,8 +5,8 @@ ImbrogliOS is mainly created for my personal purposes.
 
 It is actually based on:
 
-- Android 14.0.0_r54
-- latest GApps from barbet 14/AP2A.240705.004
+- Android 14.0.0_r56
+- latest GApps from akita 14/AP2A.240805.005.A1
 - Synced to latest TD Patches
 - Camera Apps: Aperture from LineageOS and OpenCamera
 - Launcher: Trebuchet and [Lawnchair 14](https://github.com/LawnchairLauncher/lawnchair)
