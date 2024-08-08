@@ -27,7 +27,7 @@ createRelease() {
         "https://api.github.com/repos/$GUSER/$GREPO/releases" \
         -H "Accept: application/vnd.github+json" \
         -H "Authorization: Bearer $IMBROGLIOTOKEN" \
-        -d "{\"tag_name\":\"$TAG\",\"name\":\"AOSP 14.0 $TAG\",\"body\":\"## Changelog\n- ...\n\n## Notes\n- ...\",\"draft\":true}")
+        -d "{\"tag_name\":\"$TAG\",\"name\":\"ImbrogliOS 14.0 $TAG\",\"body\":\"## Changelog\n- ...\n\n## Notes\n- ...\",\"draft\":true}")
     id=$(echo "$res" | jq -rc ".id")
     echo
 }
