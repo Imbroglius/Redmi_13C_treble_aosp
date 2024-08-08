@@ -37,7 +37,7 @@ uploadAssets() {
     find $BD/ -name "ImbrogliOS-*-14.0-$buildDate.img.xz" | while read file; do
         echo "--> Uploading $(basename $file)"
         curl -o /dev/null -s -L -X POST \
-            "https://uploads.github.com/repos/$GUSER/$GREPO/releases/$id/assets?name=$(basename $file)" \
+            "https://api.github.com/repos/$GUSER/$GREPO/releases/$id/assets?name=$(basename $file)" \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Token $IMBROGLIOTOKEN" \
             -H "Content-Type: application/octet-stream" \
