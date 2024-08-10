@@ -18,6 +18,7 @@ BB=android-14.0.0_r61
 
 initRepos() {
     echo "--> Initializing workspace"
+    ccache -M 50G -F 0
     repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r61 --git-lfs
     echo
 
