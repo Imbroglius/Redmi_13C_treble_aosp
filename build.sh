@@ -42,7 +42,7 @@ syncRepos() {
 
 clonePriv() {
     echo "Import signing keys"
-    git clone https://github.com/imbroglius/vendor_daniel-priv vendor/daniel-priv
+    git clone https://imbroglius@github.com/imbroglius/vendor_daniel-priv vendor/daniel-priv
 }
 
 
