@@ -15,10 +15,11 @@ BD=$HOME/builds
 BV=$1
 LMD=.repo/local_manifests
 BB=android-14.0.0_r61
+token: ${{ secrets.IMBROGLIOTOKEN }}
 
 initRepos() {
     echo "--> Initializing workspace"
-    repo init -u https://android.googlesource.com/platform/manifest -b "$BB" --git-lfs
+    repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r61 --git-lfs
     echo
 
    echo "--> Preparing local manifest"
@@ -42,7 +43,7 @@ syncRepos() {
 
 clonePriv() {
     echo "Import signing keys"
-    git clone https://imbroglius:"$IMBROGLIOTOKEN"@github.com/imbroglius/vendor_daniel-priv vendor/daniel-priv
+    git clone https://imbroglius:token@github.com/imbroglius/vendor_daniel-priv vendor/daniel-priv
 }
 
 
