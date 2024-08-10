@@ -15,7 +15,7 @@ BD=$HOME/builds
 BV=$1
 LMD=.repo/local_manifests
 BB=android-14.0.0_r61
-token: ${{ secrets.IMBROGLIOTOKEN }}
+token=$IMBROGLIOTOKEN
 
 initRepos() {
     echo "--> Initializing workspace"
