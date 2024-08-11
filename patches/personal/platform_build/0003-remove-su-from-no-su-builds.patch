@@ -1,0 +1,31 @@
+From fae9111b9057448cecdf7b78e01dde9e6ba99487 Mon Sep 17 00:00:00 2001
+From: MisterZtr <andey2004586@gmail.com>
+Date: Wed, 7 Aug 2024 08:54:47 +0000
+Subject: [PATCH] remove su from no-su builds
+
+---
+ target/product/base_system.mk | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/target/product/base_system.mk b/target/product/base_system.mk
+index cc44dc5f46..8ab9721b27 100644
+--- a/target/product/base_system.mk
++++ b/target/product/base_system.mk
+@@ -480,15 +480,10 @@ PRODUCT_PACKAGES_DEBUG := \
+     traceroute6 \
+     unwind_info \
+     unwind_reg_info \
+     unwind_symbols \
+ 
+-ifeq ($(EVEREST_BUILD),)
+-PRODUCT_PACKAGES_DEBUG += \
+-    su
+-endif
+-
+ # The set of packages whose code can be loaded by the system server.
+ PRODUCT_SYSTEM_SERVER_APPS += \
+     SettingsProvider \
+ 
+ ifeq (,$(DISABLE_WALLPAPER_BACKUP))
+-- 
+2.45.2

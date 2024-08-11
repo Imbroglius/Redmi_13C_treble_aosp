@@ -7,23 +7,28 @@ Subject: [PATCH 2/2] Add new mechanism to fake vendor props on a per-process
 This reads debug.phh.props.<process name>. If its value is "vendor",
 then ro.product.device/ro.product.manufacturer is read from vendor
 ---
- libc/system_properties/system_properties.cpp | 87 +++++++++++++++++++-
- 1 file changed, 85 insertions(+), 2 deletions(-)
+ libc/system_properties/system_properties.cpp | 86 +++++++++++++++++++-
+ 1 file changed, 84 insertions(+), 2 deletions(-)
 
 diff --git a/libc/system_properties/system_properties.cpp b/libc/system_properties/system_properties.cpp
-index 9dd5e35ce..886bef127 100644
+index e82367ba1..bf1a11262 100644
 --- a/libc/system_properties/system_properties.cpp
 +++ b/libc/system_properties/system_properties.cpp
-@@ -36,6 +36,8 @@
+@@ -34,10 +34,11 @@
+ #include <stdlib.h>
+ #include <string.h>
  #include <sys/stat.h>
  #include <sys/types.h>
  #include <unistd.h>
-+#include <string.h>
 +#include <fcntl.h>
  
  #include <new>
  
-@@ -53,6 +55,85 @@
+ #include <async_safe/CHECK.h>
+ #include <async_safe/log.h>
+@@ -52,10 +53,89 @@
+ 
+ #define SERIAL_DIRTY(serial) ((serial)&1)
  #define SERIAL_VALUE_LEN(serial) ((serial) >> 24)
  #define APPCOMPAT_PREFIX "ro.appcompat_override."
  
@@ -109,7 +114,11 @@ index 9dd5e35ce..886bef127 100644
  static bool is_dir(const char* pathname) {
    struct stat info;
    if (stat(pathname, &info) == -1) {
-@@ -156,17 +237,19 @@ uint32_t SystemProperties::AreaSerial() {
+     return false;
+   }
+@@ -157,23 +237,25 @@ uint32_t SystemProperties::AreaSerial() {
+   // Make sure this read fulfilled before __system_property_serial
+   return atomic_load_explicit(pa->serial(), memory_order_acquire);
  }
  
  const prop_info* SystemProperties::Find(const char* name) {
@@ -118,6 +127,8 @@ index 9dd5e35ce..886bef127 100644
    if (!initialized_) {
      return nullptr;
    }
+ 
+   pi_hooks.OnFind(&name);
  
 -  prop_area* pa = contexts_->GetPropAreaForName(name);
 +  prop_area* pa = contexts_->GetPropAreaForName(newName);
@@ -131,6 +142,7 @@ index 9dd5e35ce..886bef127 100644
  }
  
  static bool is_appcompat_override(const char* name) {
+   return strncmp(name, APPCOMPAT_PREFIX, strlen(APPCOMPAT_PREFIX)) == 0;
+ }
 -- 
-2.34.1
-
+2.45.1

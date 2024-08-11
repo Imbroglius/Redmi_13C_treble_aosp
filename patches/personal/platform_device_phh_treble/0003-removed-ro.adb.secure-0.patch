@@ -1,0 +1,27 @@
+From ea4545e7bd2ad65906810db2a01fb0eed228ef78 Mon Sep 17 00:00:00 2001
+From: kaii-lb <aosp@crave.io>
+Date: Fri, 2 Aug 2024 09:54:44 +0000
+Subject: [PATCH] removed ro.adb.secure=0
+
+---
+ base.mk | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/base.mk b/base.mk
+index 43e261b..beec8b4 100644
+--- a/base.mk
++++ b/base.mk
+@@ -31,11 +31,10 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+ 	ro.build.version.sdk=$(PLATFORM_SDK_VERSION) \
+ 	ro.build.version.codename=$(PLATFORM_VERSION_CODENAME) \
+ 	ro.build.version.all_codenames=$(PLATFORM_VERSION_ALL_CODENAMES) \
+ 	ro.build.version.release=$(PLATFORM_VERSION) \
+ 	ro.build.version.security_patch=$(PLATFORM_SECURITY_PATCH) \
+-	ro.adb.secure=0 \
+ 	ro.logd.auditd=true \
+ 	ro.logd.kernel=true \
+ 
+ #Huawei HiSuite (also other OEM custom programs I guess) it's of no use in AOSP builds
+ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+-- 
+2.45.2

@@ -1,0 +1,27 @@
+From ff3d026357df560eec63b2dbaec39290141f7a93 Mon Sep 17 00:00:00 2001
+From: kaii-lb <aosp@crave.io>
+Date: Fri, 2 Aug 2024 08:56:33 +0000
+Subject: [PATCH] un-enforce gsi makes adb insecure
+
+---
+ target/board/gsi_system_ext.prop | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/target/board/gsi_system_ext.prop b/target/board/gsi_system_ext.prop
+index 780aadc0ae..217bd012ad 100644
+--- a/target/board/gsi_system_ext.prop
++++ b/target/board/gsi_system_ext.prop
+@@ -1,11 +1,8 @@
+ # GSI always generate dex pre-opt in system image
+ ro.cp_system_other_odex=0
+ 
+-# GSI always disables adb authentication
+-ro.adb.secure=0
+-
+ # GSI disables non-AOSP nnapi extensions on product partition
+ ro.nnapi.extensions.deny_on_product=true
+ 
+ # TODO(b/120679683): disable RescueParty before all problem apps solved
+ persist.sys.disable_rescue=true
+-- 
+2.45.2

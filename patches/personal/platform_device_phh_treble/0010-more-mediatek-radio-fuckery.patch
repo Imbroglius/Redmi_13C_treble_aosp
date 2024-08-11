@@ -1,0 +1,78 @@
+From 1ad01fdaf28e39ed4c0e1b1a38121bd01b130c28 Mon Sep 17 00:00:00 2001
+From: kaii-lb <aosp@crave.io>
+Date: Thu, 8 Aug 2024 12:03:22 +0000
+Subject: [PATCH] more mediatek radio fuckery
+
+---
+ sepolicy/service_contexts | 59 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+
+diff --git a/sepolicy/service_contexts b/sepolicy/service_contexts
+index a390e3f..3f39fb3 100644
+--- a/sepolicy/service_contexts
++++ b/sepolicy/service_contexts
+@@ -14,3 +14,62 @@ android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/sysbta    u:obje
+ 
+ # QcRilAm
+ me.phh.qcrilam                                                            u:object_r:qcrilam_service:s0
++
++endor.mediatek.hardware.mtkradioex.data.IMtkRadioExData/slot1           u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.data.IMtkRadioExData/slot2           u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.data.IMtkRadioExData/slot3           u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.data.IMtkRadioExData/slot4           u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.ims.IMtkRadioExIms/slot1             u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.ims.IMtkRadioExIms/slot2             u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.ims.IMtkRadioExIms/slot3             u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.ims.IMtkRadioExIms/slot4             u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.messaging.IMtkRadioExMessaging/slot1 u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.messaging.IMtkRadioExMessaging/slot2 u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.messaging.IMtkRadioExMessaging/slot3 u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.messaging.IMtkRadioExMessaging/slot4 u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.modem.IMtkRadioExModem/slot1         u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.modem.IMtkRadioExModem/slot2         u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.modem.IMtkRadioExModem/slot3         u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.modem.IMtkRadioExModem/slot4         u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.network.IMtkRadioExNetwork/slot1     u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.network.IMtkRadioExNetwork/slot2     u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.network.IMtkRadioExNetwork/slot3     u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.network.IMtkRadioExNetwork/slot4     u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.sim.IMtkRadioExSim/slot1             u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.sim.IMtkRadioExSim/slot2             u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.sim.IMtkRadioExSim/slot3             u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.sim.IMtkRadioExSim/slot4             u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.voice.IMtkRadioExVoice/slot1         u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.voice.IMtkRadioExVoice/slot2         u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.voice.IMtkRadioExVoice/slot3         u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.voice.IMtkRadioExVoice/slot4         u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.rcs.IMtkRadioExRcs/slot1             u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.rcs.IMtkRadioExRcs/slot2             u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.rcs.IMtkRadioExRcs/slot3             u:object_r:hal_radio_service:s0
++vendor.mediatek.hardware.mtkradioex.rcs.IMtkRadioExRcs/slot4             u:object_r:hal_radio_service:s0
++
++android.hardware.radio.modem.IRadioModem/imsSlot1     u:object_r:hal_radio_service:s0
++android.hardware.radio.modem.IRadioModem/imsSlot2     u:object_r:hal_radio_service:s0
++android.hardware.radio.modem.IRadioModem/imsSlot3     u:object_r:hal_radio_service:s0
++android.hardware.radio.modem.IRadioModem/imsSlot4     u:object_r:hal_radio_service:s0
++android.hardware.radio.network.IRadioNetwork/imsSlot1 u:object_r:hal_radio_service:s0
++android.hardware.radio.network.IRadioNetwork/imsSlot2 u:object_r:hal_radio_service:s0
++android.hardware.radio.network.IRadioNetwork/imsSlot3 u:object_r:hal_radio_service:s0
++android.hardware.radio.network.IRadioNetwork/imsSlot4 u:object_r:hal_radio_service:s0
++android.hardware.radio.sim.IRadioSim/imsSlot1         u:object_r:hal_radio_service:s0
++android.hardware.radio.sim.IRadioSim/imsSlot2         u:object_r:hal_radio_service:s0
++android.hardware.radio.sim.IRadioSim/imsSlot3         u:object_r:hal_radio_service:s0
++android.hardware.radio.sim.IRadioSim/imsSlot4         u:object_r:hal_radio_service:s0
++android.hardware.radio.voice.IRadioVoice/imsSlot1     u:object_r:hal_radio_service:s0
++android.hardware.radio.voice.IRadioVoice/imsSlot2     u:object_r:hal_radio_service:s0
++android.hardware.radio.voice.IRadioVoice/imsSlot3     u:object_r:hal_radio_service:s0
++android.hardware.radio.voice.IRadioVoice/imsSlot4     u:object_r:hal_radio_service:s0
++
++android.hardware.radio.modem.IRadioModem/se1     u:object_r:hal_radio_service:s0
++android.hardware.radio.modem.IRadioModem/se2     u:object_r:hal_radio_service:s0
++android.hardware.radio.modem.IRadioModem/se3     u:object_r:hal_radio_service:s0
++android.hardware.radio.modem.IRadioModem/se4     u:object_r:hal_radio_service:s0
++android.hardware.radio.sim.IRadioSim/se1         u:object_r:hal_radio_service:s0
++android.hardware.radio.sim.IRadioSim/se2         u:object_r:hal_radio_service:s0
++android.hardware.radio.sim.IRadioSim/se3         u:object_r:hal_radio_service:s0
++android.hardware.radio.sim.IRadioSim/se4         u:object_r:hal_radio_service:s0
+-- 
+2.45.2

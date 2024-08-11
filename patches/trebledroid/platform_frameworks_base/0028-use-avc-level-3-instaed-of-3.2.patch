@@ -1,0 +1,28 @@
+From 3e61377bbd4d20858ad439e3ed579dc34620d7de Mon Sep 17 00:00:00 2001
+From: kaii-lb <aosp@crave.io>
+Date: Fri, 2 Aug 2024 12:53:17 +0000
+Subject: [PATCH] use avc level 3 instaed of 3.2
+
+---
+ .../com/android/systemui/screenrecord/ScreenMediaRecorder.java  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/screenrecord/ScreenMediaRecorder.java b/packages/SystemUI/src/com/android/systemui/screenrecord/ScreenMediaRecorder.java
+index 61388923c5bd..067cc2048afa 100644
+--- a/packages/SystemUI/src/com/android/systemui/screenrecord/ScreenMediaRecorder.java
++++ b/packages/SystemUI/src/com/android/systemui/screenrecord/ScreenMediaRecorder.java
+@@ -184,11 +184,11 @@ public class ScreenMediaRecorder extends MediaProjection.Callback {
+         but at the same time the cpu load is 8-10 times higher and some devices don't support it yet */
+         if (!mHEVC) {
+             mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
+             mMediaRecorder.setVideoEncodingProfileLevel(
+                     MediaCodecInfo.CodecProfileLevel.AVCProfileMain,
+-                    mLowQuality ? MediaCodecInfo.CodecProfileLevel.AVCLevel32/*level 3.2*/
++                    mLowQuality ? MediaCodecInfo.CodecProfileLevel.AVCLevel3/*level 3*/
+                     : getAvcProfileLevelCodeByName(mAvcProfileLevel));
+         } else {
+             mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.HEVC);
+             mMediaRecorder.setVideoEncodingProfileLevel(
+                     MediaCodecInfo.CodecProfileLevel.HEVCProfileMain,
+-- 
+2.45.2

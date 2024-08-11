@@ -13,7 +13,9 @@ diff --git a/src/java/com/android/ims/ImsManager.java b/src/java/com/android/ims
 index 217a26f2..b687e4bf 100644
 --- a/src/java/com/android/ims/ImsManager.java
 +++ b/src/java/com/android/ims/ImsManager.java
-@@ -1679,6 +1679,14 @@ public class ImsManager implements FeatureUpdates {
+@@ -1677,10 +1677,18 @@ public class ImsManager implements FeatureUpdates {
+                     + ". Exception:" + e.getMessage() + ". Returning false.");
+             return false;
          }
      }
  
@@ -28,6 +30,8 @@ index 217a26f2..b687e4bf 100644
      /**
       * Push configuration updates to the ImsService implementation.
       */
+     public void updateImsServiceConfig() {
+         try {
 -- 
-2.34.1
+2.45.1
 

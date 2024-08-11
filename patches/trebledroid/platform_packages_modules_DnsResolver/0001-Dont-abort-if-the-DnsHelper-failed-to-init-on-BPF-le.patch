@@ -11,7 +11,9 @@ diff --git a/DnsProxyListener.cpp b/DnsProxyListener.cpp
 index 8064aef7..008e1a5d 100644
 --- a/DnsProxyListener.cpp
 +++ b/DnsProxyListener.cpp
-@@ -691,7 +691,6 @@ IsUidBlockedFn resolveIsUidNetworkingBlockedFn() {
+@@ -689,11 +689,10 @@ IsUidBlockedFn resolveIsUidNetworkingBlockedFn() {
+         return nullptr;
+     }
      const int ret = (*ADnsHelper_init)();
      if (ret) {
          LOG(ERROR) << __func__ << ": ADnsHelper_init failed " << strerror(-ret);
@@ -19,6 +21,8 @@ index 8064aef7..008e1a5d 100644
      }
  
      IsUidBlockedFn f =
+             reinterpret_cast<IsUidBlockedFn>(dlsym(handle, "ADnsHelper_isUidNetworkingBlocked"));
+     if (!f) {
 -- 
-2.34.1
+2.45.1
 

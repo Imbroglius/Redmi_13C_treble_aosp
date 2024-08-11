@@ -8,20 +8,24 @@ Subject: [PATCH 06/10] Allow mismatches of exfat genfscon
  1 file changed, 4 insertions(+)
 
 diff --git a/libsepol/cil/src/cil_post.c b/libsepol/cil/src/cil_post.c
-index 99410da0..7f614c03 100644
+index 99410da0..7a51d175 100644
 --- a/libsepol/cil/src/cil_post.c
 +++ b/libsepol/cil/src/cil_post.c
-@@ -502,6 +502,10 @@ static int cil_post_genfscon_context_compare(const void *a, const void *b)
- 		 */
+@@ -500,10 +500,14 @@ static int cil_post_genfscon_context_compare(const void *a, const void *b)
+ 		* - AOSP Q says (genfscon sysfs /devices/virtual/block/ (u object_r sysfs_devices_block ((s0) (s0))))
+ 		* - stock rom says (genfscon sysfs /devices/virtual/block/ (u object_r sysfs_ufs_target ((s0) (s0))))
+ 		*/
  		if(strcmp(a_genfscon->path_str, "/devices/virtual/block/") == 0)
  			bypass = 1;
 +		if(strcmp(a_genfscon->fs_str, "exfat") == 0 || strcmp(a_genfscon->fs_str, "esdfs") == 0) {
 +            if(strcmp(a_genfscon->path_str, "/") == 0)
 +                bypass = 1;
-+        }
++        }			
  		if(bypass == 1) {
  			fprintf(stderr, "Received conflicting %s vs %s but ignore\n", a_genfscon->path_str, b_genfscon->path_str);
  			return 0;
+ 		}
+ 	}
 -- 
-2.34.1
+2.45.1
 

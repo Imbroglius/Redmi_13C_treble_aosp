@@ -1,29 +1,29 @@
 From 844e4f92f7324a5aa5988669e84cbe92ab4fcf27 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 14 Dec 2022 17:21:00 -0500
-Subject: [PATCH 30/54] Call Samsung's ISehSysInputDev to report screen state
+Subject: [PATCH 30/53] Call Samsung's ISehSysInputDev to report screen state
  to touchscreen driver
 
 This fixes touchscreen not waking up on Galaxy F23
 ---
  services/core/Android.bp                      |  1 +
- .../server/display/LocalDisplayAdapter.java   | 31 +++++++++++++++++++
- 2 files changed, 32 insertions(+)
+ .../server/display/LocalDisplayAdapter.java   | 34 +++++++++++++++++++
+ 2 files changed, 35 insertions(+)
 
 diff --git a/services/core/Android.bp b/services/core/Android.bp
-index 5fe4be72c036..1934f8196639 100644
+index 84d4812b6075..6ec7b63582fa 100644
 --- a/services/core/Android.bp
 +++ b/services/core/Android.bp
-@@ -255,6 +255,7 @@ java_library_static {
-         "net_flags_lib",
-         "stats_flags_lib",
+@@ -258,6 +258,7 @@ java_library_static {
          "core_os_flags_lib",
+         "vendor.aac.hardware.richtap.vibrator",
+         "vendor.aospa.biometrics.face",
 +        "vendor.samsung.hardware.sysinput-V1.2-java", // HIDL
      ],
      javac_shard_size: 50,
      javacflags: [
 diff --git a/services/core/java/com/android/server/display/LocalDisplayAdapter.java b/services/core/java/com/android/server/display/LocalDisplayAdapter.java
-index 88c24e0a7eff..ac4a9c474c9e 100644
+index 6ab37d60af4a..a2102bbc4edc 100644
 --- a/services/core/java/com/android/server/display/LocalDisplayAdapter.java
 +++ b/services/core/java/com/android/server/display/LocalDisplayAdapter.java
 @@ -38,6 +38,7 @@ import android.os.Trace;
@@ -34,7 +34,7 @@ index 88c24e0a7eff..ac4a9c474c9e 100644
  import android.util.SparseArray;
  import android.view.Display;
  import android.view.DisplayAddress;
-@@ -58,6 +59,8 @@ import com.android.server.display.notifications.DisplayNotificationManager;
+@@ -59,6 +60,8 @@ import com.android.server.display.notifications.DisplayNotificationManager;
  import com.android.server.lights.LightsManager;
  import com.android.server.lights.LogicalLight;
  
@@ -43,25 +43,28 @@ index 88c24e0a7eff..ac4a9c474c9e 100644
  import java.io.PrintWriter;
  import java.util.ArrayList;
  import java.util.Arrays;
-@@ -251,6 +254,8 @@ final class LocalDisplayAdapter extends DisplayAdapter {
- 
+@@ -253,6 +256,10 @@ final class LocalDisplayAdapter extends DisplayAdapter {
          private DisplayEventReceiver.FrameRateOverride[] mFrameRateOverrides =
                  new DisplayEventReceiver.FrameRateOverride[0];
+ 
 +        private boolean triedSamsungHal = false;
 +        private ISehSysInputDev samsungSysinput = null;
- 
++
++
          LocalDisplayDevice(IBinder displayToken, long physicalDisplayId,
                  SurfaceControl.StaticDisplayInfo staticDisplayInfo,
-@@ -859,16 +864,42 @@ final class LocalDisplayAdapter extends DisplayAdapter {
+                 SurfaceControl.DynamicDisplayInfo dynamicInfo,
+@@ -860,16 +867,43 @@ final class LocalDisplayAdapter extends DisplayAdapter {
                              }
                          }
  
-+                        if (!triedSamsungHal) {
++						if (!triedSamsungHal) {
 +                            triedSamsungHal = true;
 +                            try {
 +                                samsungSysinput = ISehSysInputDev.getService();
 +                            } catch(Throwable t) {}
 +                        }
++
                          final int mode = getPowerModeForState(state);
                          Trace.traceBegin(Trace.TRACE_TAG_POWER, "setDisplayState("
                                  + "id=" + physicalDisplayId
@@ -75,7 +78,7 @@ index 88c24e0a7eff..ac4a9c474c9e 100644
 +                                Log.d("PHH", "Failed settings tsp enable", t);
 +                            }
 +                        }
-+
++                                
                          try {
                              mSurfaceControlProxy.setDisplayPowerMode(token, mode);
                              Trace.traceCounter(Trace.TRACE_TAG_POWER, "DisplayPowerMode", mode);
@@ -91,10 +94,9 @@ index 88c24e0a7eff..ac4a9c474c9e 100644
 +                                Log.d("PHH", "Failed settings tsp enable", t);
 +                            }
 +                        }
-+
++                        
                          setCommittedState(state);
  
                          // If we're entering a suspended (but not OFF) power state and we
 -- 
-2.34.1
-
+2.45.1

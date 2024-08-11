@@ -9,22 +9,23 @@ that means that libavb can't access the partition by-name, thus failing
 to read vbmeta & co, and thus failing setting up dm-verity.
 
 We don't care much about dm-verity so let's just ignore this
+
 ---
  init/first_stage_mount.cpp | 1 -
  1 file changed, 1 deletion(-)
 
 diff --git a/init/first_stage_mount.cpp b/init/first_stage_mount.cpp
-index c0b928139..4f5293771 100644
+index 69acb0075..672af3577 100644
 --- a/init/first_stage_mount.cpp
 +++ b/init/first_stage_mount.cpp
-@@ -427,7 +427,6 @@ bool FirstStageMountVBootV2::MountPartition(const Fstab::iterator& begin, bool e
-     }
-     if (!SetUpDmVerity(&(*begin))) {
-         PLOG(ERROR) << "Failed to setup verity for '" << begin->mount_point << "'";
--        return false;
-     }
- 
-     bool mounted = (fs_mgr_do_mount_one(*begin) == 0);
+@@ -429,7 +429,6 @@ bool FirstStageMountVBootV2::MountPartition(const Fstab::iterator& begin, bool e
+     if (begin->fs_mgr_flags.avb) {
+         if (!SetUpDmVerity(&(*begin))) {
+             PLOG(ERROR) << "Failed to setup verity for '" << begin->mount_point << "'";
+-            return false;
+         }
+     } else {
+         LOG(INFO) << "AVB is not enabled, skip verity setup for '" << begin->mount_point << "'";
 -- 
-2.34.1
+2.45.1
 
