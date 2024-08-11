@@ -13,10 +13,7 @@ diff --git a/graphics/composer/2.1/utils/command-buffer/include/composer-command
 index 336d15dc6c..423893f837 100644
 --- a/graphics/composer/2.1/utils/command-buffer/include/composer-command-buffer/2.1/ComposerCommandBuffer.h
 +++ b/graphics/composer/2.1/utils/command-buffer/include/composer-command-buffer/2.1/ComposerCommandBuffer.h
-@@ -399,12 +399,18 @@ class CommandWriterBase {
-     void setLayerZOrder(uint32_t z) {
-         beginCommand(IComposerClient::Command::SET_LAYER_Z_ORDER, kSetLayerZOrderLength);
-         write(z);
+@@ -402,6 +402,12 @@ class CommandWriterBase {
          endCommand();
      }
  
@@ -29,8 +26,6 @@ index 336d15dc6c..423893f837 100644
     protected:
       template <typename T>
       void beginCommand(T command, uint16_t length) {
-          beginCommandBase(static_cast<IComposerClient::Command>(command), length);
-      }
- 
 -- 
-2.45.1
+2.34.1
+

@@ -13,9 +13,7 @@ diff --git a/libsepol/cil/src/cil_post.c b/libsepol/cil/src/cil_post.c
 index a7c66ead..99410da0 100644
 --- a/libsepol/cil/src/cil_post.c
 +++ b/libsepol/cil/src/cil_post.c
-@@ -489,11 +489,27 @@ static int cil_post_portcon_context_compare(const void *a, const void *b)
- 
- static int cil_post_genfscon_context_compare(const void *a, const void *b)
+@@ -491,7 +491,23 @@ static int cil_post_genfscon_context_compare(const void *a, const void *b)
  {
  	struct cil_genfscon *a_genfscon = *(struct cil_genfscon**)a;
  	struct cil_genfscon *b_genfscon = *(struct cil_genfscon**)b;
@@ -25,10 +23,10 @@ index a7c66ead..99410da0 100644
 +		fprintf(stderr, "hello %s\n", a_genfscon->fs_str);
 +		int bypass = 0;
 +		/*
-+		* This conflict has been seen on Xiaomi Mi 9:
-+		* - AOSP Q says (genfscon sysfs /devices/virtual/block/ (u object_r sysfs_devices_block ((s0) (s0))))
-+		* - stock rom says (genfscon sysfs /devices/virtual/block/ (u object_r sysfs_ufs_target ((s0) (s0))))
-+		*/
++		 * This conflict has been seen on Xiaomi Mi 9:
++		 * - AOSP Q says (genfscon sysfs /devices/virtual/block/ (u object_r sysfs_devices_block ((s0) (s0))))
++		 * - stock rom says (genfscon sysfs /devices/virtual/block/ (u object_r sysfs_ufs_target ((s0) (s0))))
++		 */
 +		if(strcmp(a_genfscon->path_str, "/devices/virtual/block/") == 0)
 +			bypass = 1;
 +		if(bypass == 1) {
@@ -40,7 +38,6 @@ index a7c66ead..99410da0 100644
  }
  
  static int cil_post_netifcon_context_compare(const void *a, const void *b)
- {
- 	int rc;
 -- 
-2.45.1
+2.34.1
+

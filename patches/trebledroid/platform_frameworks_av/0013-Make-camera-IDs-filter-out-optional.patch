@@ -7,14 +7,14 @@ Nowadays most people have Camera 2 apps, and would like to have all
 cameras, rather than limit which cameras are available.
 Add a property for that.
 ---
- .../common/CameraProviderManager.cpp                | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+ .../common/CameraProviderManager.cpp               | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
 
 diff --git a/services/camera/libcameraservice/common/CameraProviderManager.cpp b/services/camera/libcameraservice/common/CameraProviderManager.cpp
-index 24d6d5de95..6709dccaeb 100644
+index 60e4eb7b42..fbfdecc2ed 100644
 --- a/services/camera/libcameraservice/common/CameraProviderManager.cpp
 +++ b/services/camera/libcameraservice/common/CameraProviderManager.cpp
-@@ -318,7 +318,9 @@ std::vector<std::string> CameraProviderManager::getAPI1CompatibleCameraDeviceIds
+@@ -328,7 +328,9 @@ std::vector<std::string> CameraProviderManager::getAPI1CompatibleCameraDeviceIds
          // API1 app doesn't handle logical and physical camera devices well. So
          // for each camera facing, only take the first id advertised by HAL in
          // all [logical, physical1, physical2, ...] id combos, and filter out the rest.
@@ -25,21 +25,23 @@ index 24d6d5de95..6709dccaeb 100644
          collectDeviceIdsLocked(providerDeviceIds, publicDeviceIds, systemDeviceIds);
      }
      auto sortFunc =
-@@ -1112,6 +1114,15 @@ SystemCameraKind CameraProviderManager::ProviderInfo::DeviceInfo3::getSystemCame
-             entryCap.data.u8[0] == ANDROID_REQUEST_AVAILABLE_CAPABILITIES_SECURE_IMAGE_DATA) {
-         return SystemCameraKind::HIDDEN_SECURE_CAMERA;
-     }
+@@ -1137,10 +1139,12 @@ SystemCameraKind CameraProviderManager::ProviderInfo::DeviceInfo3::getSystemCame
+ 
+     // Go through the capabilities and check if it has
+     // ANDROID_REQUEST_AVAILABLE_CAPABILITIES_SYSTEM_CAMERA
+-    for (size_t i = 0; i < entryCap.count; ++i) {
+-        uint8_t capability = entryCap.data.u8[i];
+-        if (capability == ANDROID_REQUEST_AVAILABLE_CAPABILITIES_SYSTEM_CAMERA) {
+-            return SystemCameraKind::SYSTEM_ONLY_CAMERA;
 +    if(!property_get_bool("persist.sys.phh.include_all_cameras", false)) {
 +        for (size_t i = 0; i < entryCap.count; ++i) {
 +            uint8_t capability = entryCap.data.u8[i];
 +            if (capability == ANDROID_REQUEST_AVAILABLE_CAPABILITIES_SYSTEM_CAMERA) {
 +                return SystemCameraKind::SYSTEM_ONLY_CAMERA;
 +            }
-+        }
-+    }
-+     
+         }
+     }
      return SystemCameraKind::PUBLIC;
- }
- 
 -- 
-2.45.1
+2.34.1
+

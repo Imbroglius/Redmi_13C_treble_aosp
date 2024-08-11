@@ -1,4 +1,4 @@
-From c4e188c849f31211acc099c4dfd2268ad91cf7af Mon Sep 17 00:00:00 2001
+From 2f8b7f6bbbcd30282ef9b8100133f26670557da5 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 31 Mar 2021 23:32:37 +0200
 Subject: [PATCH 03/10] Workaround device/phh/treble conflict with SELinux
@@ -18,7 +18,7 @@ simply ignore them.
  3 files changed, 28 insertions(+), 6 deletions(-)
 
 diff --git a/libsepol/cil/src/cil_binary.c b/libsepol/cil/src/cil_binary.c
-index 40615db2..7d186515 100644
+index 40615db2..74a52956 100644
 --- a/libsepol/cil/src/cil_binary.c
 +++ b/libsepol/cil/src/cil_binary.c
 @@ -511,13 +511,17 @@ int cil_typealias_to_policydb(policydb_t *pdb, struct cil_alias *cil_alias)
@@ -36,7 +36,7 @@ index 40615db2..7d186515 100644
  	key = cil_strdup(cil_alias->datum.fqn);
  	rc = symtab_insert(pdb, SYM_TYPES, key, sepol_alias, SCOPE_DECL, 0, NULL);
  	if (rc != SEPOL_OK) {
-+		cil_log(CIL_ERR, "Failed at %s:%s:%d:%d\n", __FILE__, __FUNCTION__, __LINE__, rc);
++        cil_log(CIL_ERR, "Failed at %s:%s:%d:%d\n", __FILE__, __FUNCTION__, __LINE__, rc);
  		goto exit;
  	}
  	sepol_alias->s.value = sepol_type->s.value;
@@ -113,3 +113,4 @@ index 91fa1075..d20fb7ee 100644
  
 -- 
 2.34.1
+
