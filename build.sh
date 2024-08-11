@@ -14,9 +14,11 @@ BL=$PWD/imbroglios_gsi
 BD=$HOME/builds
 BV=$1
 LMD=.repo/local_manifests
+BB=android-14.0.0_r61
 
 initRepos() {
     echo "--> Initializing workspace"
+    ccache -M 50G -F 0
     repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r61 --git-lfs
     echo
 
@@ -40,8 +42,8 @@ syncRepos() {
 }
 
 clonePriv() {
-    echo "Import signing keys if you want"
-    read -p "You have now 4 minutes to clone your signing keys, then press any key to continue. Else, the script will terminate." -t 240
+    echo "Import signing keys"
+    git clone https://imbroglius@github.com/imbroglius/vendor_daniel-priv vendor/daniel-priv
 }
 
 

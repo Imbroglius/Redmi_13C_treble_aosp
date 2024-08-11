@@ -1,12 +1,25 @@
-# ImbrogliOS AOSP GSI
+# ImbrogliOS AOSP GSI v2024.08.09
 
-## INFO
-ImbrogliOS is mainly created for my personal purposes.
-
-It is actually based on:
-
-- Android 14.0.0_r56
+## Changelog:
+- bumped to Android 14.0.0_r61
+- Security patch updated to 08/2024
 - latest GApps from akita 14/AP2A.240805.005.A1
+
+## Two Editions:
+
+## 1. PURE:
+- Android 14.0.0_r61
+- latest GApps from akita 14/AP2A.240805.005.A1
+- Google Security patch August 2024
+- Synced to latest TD Patches
+- Camera Apps: Aperture from LineageOS
+- the builds are signed with my personal keys
+
+
+## 2. FULL
+- Android 14.0.0_r61
+- latest GApps from akita 14/AP2A.240805.005.A1
+- Google Security patch August 2024
 - Synced to latest TD Patches
 - Camera Apps: Aperture from LineageOS and OpenCamera
 - Launcher: Trebuchet and [Lawnchair 14](https://github.com/LawnchairLauncher/lawnchair)
@@ -14,7 +27,7 @@ It is actually based on:
 - [Obtanium](https://github.com/ImranR98/Obtainium)
 - [F-Droid](https://f-droid.org/)
 - the builds are signed with my personal keys
-- all in all it's a very clean AOSP GSI
+
 
 
 ## Build yourself (it is not signed as long as you don't include your own keys)
