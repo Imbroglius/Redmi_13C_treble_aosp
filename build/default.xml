@@ -14,13 +14,14 @@
   <project name="platform/prebuilts/vndk/v28" path="prebuilts/vndk/v28" remote="aosp" revision="204f1bad00aaf480ba33233f7b8c2ddaa03155dd" clone-depth="1" />
 
   <!-- ponces -->
-  <project name="ponces/vendor_gapps" path="vendor/gapps" remote="gitlab" revision="android-14.0" clone-depth="1" />
+  <!-- project name="ponces/vendor_gapps" path="vendor/gapps" remote="gitlab" revision="android-14.0" clone-depth="1" -->
   <project name="ponces/treble_adapter" path="treble_adapter" remote="github" revision="master" />
   <project name="ponces/packages_apps_ParanoidSense" path="packages/apps/ParanoidSense" remote="github" revision="uvite" />
   <project name="ponces/packages_services_OmniJaws" path="packages/services/OmniJaws" remote="github" revision="14.0" />
 
   <!-- imbroglius -->
   <project name="imbroglius/vendor_imbroglius" path="vendor/imbroglius" remote="gitlab" revision="android-14.0" />
+  <project name="imbroglius/vendor_gapps" path="vendor/gapps" remote="gitlab" revision="android-14.0" clone-depth="1" />
   <!-- project name="MM2-0/Kvaesitso" path="packages/apps/kvaesitso" remote="github" revision="main" -->
   <!-- project name="ImranR98/Obtainium" path="packages/apps/obtaimium" remote="github" revision="main" -->
   <!-- project name="LawnchairLauncher/lawnfeed" path="packages/apps/lawnfeed" remote="github" revision="master" -->
