@@ -21,11 +21,11 @@ initRepos() {
     repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r61 --git-lfs
     echo
 
-   echo "--> Preparing local manifest"
-    if [ -d "$LMD" ]; then
-        echo "Deleting old local manifests"
-          rm -r $LMD
-    fi
+   #echo "--> Preparing local manifest"
+    #if [ -d "$LMD" ]; then
+        #echo "Deleting old local manifests"
+          #rm -r $LMD
+    #fi
     
     echo "Fetching new local manifests"
     mkdir -p .repo/local_manifests
