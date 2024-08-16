@@ -12,13 +12,11 @@ set -e
 
 BL=$PWD/imbroglios_gsi
 BD=$HOME/builds
-BV=$1
-LMD=.repo/local_manifests
-BB=android-14.0.0_r61
+BV=treble_arm64_bgN
 
 initRepos() {
     echo "--> Initializing workspace"
-    repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r55 --git-lfs
+    repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r61 --git-lfs
     echo
 
     echo "--> Preparing local manifest"
@@ -68,23 +66,23 @@ buildTrebleApp() {
 }
 
 buildVariant() {
-    echo "--> Building $1"
-    lunch "$1"-ap2a-userdebug
+    echo "--> Building treble_arm64_bgN"
+    lunch treble_arm64_bgN-ap2a-userdebug
     make -j$(nproc --all) installclean
     make -j$(nproc --all) systemimage
     make -j$(nproc --all) target-files-package otatools
     bash $BL/sign.sh "vendor/daniel-priv/keys" $OUT/signed-target_files.zip
     unzip -jo $OUT/signed-target_files.zip IMAGES/system.img -d $OUT
-    mv $OUT/system.img $BD/system-"$1".img
+    mv $OUT/system.img $BD/system-treble_arm64_bgN.img
     echo
 }
 
 buildVndkliteVariant() {
-    echo "--> Building $1-vndklite"
-    [[ "$1" == *"a64"* ]] && arch="32" || arch="64"
+    echo "--> Building treble_arm64_bgN-vndklite"
+    [[ treble_arm64_bgN == *"a64"* ]] && arch="32" || arch="64"
     cd treble_adapter
-    sudo bash lite-adapter.sh "$arch" $BD/system-"$1".img
-    mv s.img $BD/system-"$1"-vndklite.img
+    sudo bash lite-adapter.sh "$arch" $BD/system-treble_arm64_bgN.img
+    mv s.img $BD/system-treble_arm64_bgN-vndklite.img
     sudo rm -rf d tmp
     cd ..
     echo
@@ -129,7 +127,7 @@ generateOta() {
             [[ "$filename" == *"-vanilla"* ]] && variant="v" || variant="g"
             [[ "$filename" == *"-vndklite"* ]] && vndk="-vndklite" || vndk=""
             name="treble_${arch}_b${variant}N${vndk}"
-            size=$(wc -c $file | awk '{print $1}')
+            size=$(wc -c $file | awk '{print treble_arm64_bgN}')
             url="https://github.com/imbroglius/imbroglios_gsi/releases/download/$version/$filename"
             json="${json} {\"name\": \"$name\",\"size\": \"$size\",\"url\": \"$url\"},"
         done
