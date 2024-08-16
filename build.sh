@@ -18,7 +18,6 @@ BB=android-14.0.0_r61
 
 initRepos() {
     echo "--> Initializing workspace"
-    ccache -M 50G -F 0
     repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r61 --git-lfs
     echo
 
@@ -40,12 +39,6 @@ syncRepos() {
     repo sync -c --force-sync --no-clone-bundle --no-tags -j4 || repo sync -c --force-sync --no-clone-bundle --no-tags -j4
     echo
 }
-
-clonePriv() {
-    echo "Import signing keys"
-    git clone https://imbroglius@github.com/imbroglius/vendor_daniel-priv vendor/daniel-priv
-}
-
 
 applyPatches() {
     echo "--> Applying TrebleDroid patches"
@@ -156,7 +149,6 @@ START=$(date +%s)
 
 initRepos
 syncRepos
-clonePriv
 applyPatches
 setupEnv
 buildTrebleApp
