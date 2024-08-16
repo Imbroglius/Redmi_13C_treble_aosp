@@ -18,22 +18,16 @@ BB=android-14.0.0_r61
 
 initRepos() {
     echo "--> Initializing workspace"
-    repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r61 --git-lfs
+    repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r55 --git-lfs
     echo
 
-   #echo "--> Preparing local manifest"
-    #if [ -d "$LMD" ]; then
-        #echo "Deleting old local manifests"
-          #rm -r $LMD
-    #fi
-    
-    echo "Fetching new local manifests"
+    echo "--> Preparing local manifest"
     mkdir -p .repo/local_manifests
     cp $BL/build/default.xml .repo/local_manifests/default.xml
     cp $BL/build/remove.xml .repo/local_manifests/remove.xml
     echo
-    
 }
+
 syncRepos() {
     echo "--> Syncing repos"
     repo sync -c --force-sync --no-clone-bundle --no-tags -j4 || repo sync -c --force-sync --no-clone-bundle --no-tags -j4
