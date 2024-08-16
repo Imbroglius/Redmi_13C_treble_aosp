@@ -43,7 +43,7 @@ applyPatches() {
 
     echo "--> Generating makefiles"
     cd device/phh/treble
-    cp $BL/build/aosp.mk .
+    cp -r $BL/build/aosp.mk .
     bash generate.sh aosp
     cd ../../..
     echo
@@ -60,7 +60,7 @@ buildTrebleApp() {
     echo "--> Building treble_app"
     cd treble_app
     bash build.sh release
-    cp TrebleApp.apk ../vendor/hardware_overlay/TrebleApp/app.apk
+    cp -r TrebleApp.apk ../vendor/hardware_overlay/TrebleApp/app.apk
     cd ..
     echo
 }
