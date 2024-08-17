@@ -10,9 +10,9 @@ echo
 
 set -e
 
-BL=$PWD/imbroglios_gsi
+BL=$PWD/treble_aosp
 BD=$HOME/builds
-BV=treble_arm64_bgN
+BV=$1
 
 initRepos() {
     echo "--> Initializing workspace"
@@ -21,8 +21,8 @@ initRepos() {
 
     echo "--> Preparing local manifest"
     mkdir -p .repo/local_manifests
-    cp -r $BL/build/default.xml .repo/local_manifests/default.xml
-    cp -r $BL/build/remove.xml .repo/local_manifests/remove.xml
+    cp $BL/build/default.xml .repo/local_manifests/default.xml
+    cp $BL/build/remove.xml .repo/local_manifests/remove.xml
     echo
 }
 
@@ -43,7 +43,7 @@ applyPatches() {
 
     echo "--> Generating makefiles"
     cd device/phh/treble
-    cp -r $BL/build/aosp.mk .
+    cp $BL/build/aosp.mk .
     bash generate.sh aosp
     cd ../../..
     echo
@@ -60,29 +60,29 @@ buildTrebleApp() {
     echo "--> Building treble_app"
     cd treble_app
     bash build.sh release
-    cp -r TrebleApp.apk ../vendor/hardware_overlay/TrebleApp/app.apk
+    cp TrebleApp.apk ../vendor/hardware_overlay/TrebleApp/app.apk
     cd ..
     echo
 }
 
 buildVariant() {
-    echo "--> Building treble_arm64_bgN"
-    lunch treble_arm64_bgN-ap2a-userdebug
+    echo "--> Building $1"
+    lunch "$1"-ap2a-userdebug
     make -j$(nproc --all) installclean
     make -j$(nproc --all) systemimage
     make -j$(nproc --all) target-files-package otatools
     bash $BL/sign.sh "vendor/daniel-priv/keys" $OUT/signed-target_files.zip
     unzip -jo $OUT/signed-target_files.zip IMAGES/system.img -d $OUT
-    mv $OUT/system.img $BD/system-treble_arm64_bgN.img
+    mv $OUT/system.img $BD/system-"$1".img
     echo
 }
 
 buildVndkliteVariant() {
-    echo "--> Building treble_arm64_bgN-vndklite"
-    [[ treble_arm64_bgN == *"a64"* ]] && arch="32" || arch="64"
+    echo "--> Building $1-vndklite"
+    [[ "$1" == *"a64"* ]] && arch="32" || arch="64"
     cd treble_adapter
-    sudo bash lite-adapter.sh "$arch" $BD/system-treble_arm64_bgN.img
-    mv s.img $BD/system-treble_arm64_bgN-vndklite.img
+    sudo bash lite-adapter.sh "$arch" $BD/system-"$1".img
+    mv s.img $BD/system-"$1"-vndklite.img
     sudo rm -rf d tmp
     cd ..
     echo
@@ -107,7 +107,7 @@ generatePackages() {
         [[ "$filename" == *"_a64"* ]] && arch="arm32_binder64" || arch="arm64"
         [[ "$filename" == *"_bvN"* ]] && variant="vanilla" || variant="gapps"
         [[ "$filename" == *"-vndklite"* ]] && vndk="-vndklite" || vndk=""
-        name="ImbrogliOS-${arch}-ab-${variant}${vndk}-14.0-$buildDate"
+        name="aosp-${arch}-ab-${variant}${vndk}-14.0-$buildDate"
         xz -cv "$file" -T0 > $BD/"$name".img.xz
     done
     rm -rf $BD/system-*.img
@@ -120,14 +120,14 @@ generateOta() {
     buildDate="$(date +%Y%m%d)"
     timestamp="$START"
     json="{\"version\": \"$version\",\"date\": \"$timestamp\",\"variants\": ["
-    find $BD/ -name "ImbrogliOS-*-14.0-$buildDate.img.xz" | sort | {
+    find $BD/ -name "aosp-*-14.0-$buildDate.img.xz" | sort | {
         while read file; do
             filename="$(basename $file)"
             [[ "$filename" == *"-arm32"* ]] && arch="a64" || arch="arm64"
             [[ "$filename" == *"-vanilla"* ]] && variant="v" || variant="g"
             [[ "$filename" == *"-vndklite"* ]] && vndk="-vndklite" || vndk=""
             name="treble_${arch}_b${variant}N${vndk}"
-            size=$(wc -c $file | awk '{print treble_arm64_bgN}')
+            size=$(wc -c $file | awk '{print $1}')
             url="https://github.com/imbroglius/imbroglios_gsi/releases/download/$version/$filename"
             json="${json} {\"name\": \"$name\",\"size\": \"$size\",\"url\": \"$url\"},"
         done
