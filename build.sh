@@ -10,7 +10,7 @@ echo
 
 set -e
 
-BL=$PWD/treble_aosp
+BL=$PWD/imbroglios_gsi
 BD=$HOME/builds
 BV=$1
 
