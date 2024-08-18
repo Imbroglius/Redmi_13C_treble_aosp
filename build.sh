@@ -102,7 +102,7 @@ generatePackages() {
         [[ "$filename" == *"_a64"* ]] && arch="arm32_binder64" || arch="arm64"
         [[ "$filename" == *"_bvN"* ]] && variant="vanilla" || variant="gapps"
         [[ "$filename" == *"-vndklite"* ]] && vndk="-vndklite" || vndk=""
-        name="aosp-${arch}-ab-${variant}${vndk}-14.0-$buildDate"
+        name="ImbrogliOS-${arch}-ab-${variant}${vndk}-14.0-$buildDate"
         xz -cv "$file" -T0 > $BD/"$name".img.xz
     done
     rm -rf $BD/system-*.img
@@ -115,7 +115,7 @@ generateOta() {
     buildDate="$(date +%Y%m%d)"
     timestamp="$START"
     json="{\"version\": \"$version\",\"date\": \"$timestamp\",\"variants\": ["
-    find $BD/ -name "aosp-*-14.0-$buildDate.img.xz" | sort | {
+    find $BD/ -name "ImbrogliOS-*-14.0-$buildDate.img.xz" | sort | {
         while read file; do
             filename="$(basename $file)"
             [[ "$filename" == *"-arm32"* ]] && arch="a64" || arch="arm64"
