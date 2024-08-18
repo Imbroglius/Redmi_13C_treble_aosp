@@ -1,11 +1,16 @@
 {
-  "version": "v2024.08.08",
-  "date": "1723096872",
+  "version": "v2024.08.18",
+  "date": "1723984090",
   "variants": [
     {
       "name": "treble_arm64_bgN",
-      "size": "1423118480",
-      "url": "https://github.com/imbroglius/imbroglios_gsi/releases/download/v2024.08.08/ImbrogliOS-arm64-ab-gapps-14.0-20240808.img.xz"
+      "size": "1344131556",
+      "url": "https://github.com/imbroglius/imbroglios_gsi/releases/download/v2024.08.18/ImbrogliOS-arm64-ab-gapps-14.0-20240818.img.xz"
+    },
+    {
+      "name": "treble_arm64_bvN",
+      "size": "828278064",
+      "url": "https://github.com/imbroglius/imbroglios_gsi/releases/download/v2024.08.18/ImbrogliOS-arm64-ab-vanilla-14.0-20240818.img.xz"
     }
   ]
 }
