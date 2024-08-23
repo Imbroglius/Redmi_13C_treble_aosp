@@ -18,7 +18,7 @@ initRepos() {
     aosp=$(curl -sL https://github.com/TrebleDroid/treble_manifest/raw/$TD/replace.xml | grep -oP "${TD}.0_r\d+" | head -1)
     
     echo "--> Initializing workspace"
-    repo init -u https://android.googlesource.com/platform/manifest -b "$aosp"
+    repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r61 --git-lfs
     echo
 
     echo "--> Preparing local manifest"
