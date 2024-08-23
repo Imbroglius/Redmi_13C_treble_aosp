@@ -47,7 +47,7 @@ generatePatches() {
 
 updatePatches() {
     echo "--> Updating patches"
-    rm -rf $BL/patches/trebledroid
+    #rm -rf $BL/patches/trebledroid
     unzip -q patchestd.zip
     mv patchestd $BL/patches/trebledroid
     echo
