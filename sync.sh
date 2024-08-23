@@ -38,9 +38,9 @@ syncRepos() {
 
 generatePatches() {
     echo "--> Generating patches"
-    rm -rf patchestd patchestd.zip
+    rm -rf patchest patchest.zip
     wget -q https://github.com/TrebleDroid/treble_experimentations/raw/master/list-patches.sh -O list-patches.sh
-    sed -i "s/patches/patchestd/g" list-patches.sh
+    sed -i "s/patches/patchest/g" list-patches.sh
     bash list-patches.sh
     echo
 }
@@ -48,8 +48,8 @@ generatePatches() {
 updatePatches() {
     echo "--> Updating patches"
     #rm -rf $BL/patches/trebledroid
-    unzip -q patchestd.zip
-    mv patchestd $BL/patches/trebledroid
+    unzip -q patchest.zip
+    mv patchest $BL/patches/trebledroid
     echo
 }
 
