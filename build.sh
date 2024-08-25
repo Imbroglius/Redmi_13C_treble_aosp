@@ -16,7 +16,7 @@ BV=$1
 
 initRepos() {
     echo "--> Initializing workspace"
-    repo init -u https://github.com/DerpFest-AOSP/manifest.git -b 14 --depth=1
+    repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r55 --git-lfs
     echo
 
     echo "--> Preparing local manifest"
