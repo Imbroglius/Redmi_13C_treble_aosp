@@ -16,7 +16,7 @@ BV=$1
 
 initRepos() {
     echo "--> Initializing workspace"
-    repo init -u https://github.com/DerpFest-AOSP/manifest.git -b 14 --depth=1 --git-lfs
+    repo init -u https://github.com/DerpFest-AOSP/manifest.git -b 14 --depth=1
     echo
 
     echo "--> Preparing local manifest"
